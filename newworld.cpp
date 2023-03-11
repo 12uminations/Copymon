@@ -373,6 +373,7 @@ void win(int x){
 }
 
 int main(){
+    srand(time(0));
     Unit decoy("None","x",0,0,0,0,0,"x","x",0,"x","x",0,"x","x",0,"x",false);
     Unit poke1 ("Charizard","Fire",200,50,50,100,200,"Daimonji","Fire",75,"DragonClaw","Dragon",50,"BrickBreak","Fighting",50,"Protect",false);
 	Unit poke2 ("Blastoise","Water",200,25,75,78,200,"HydroPump","Water",75,"DarkPaluse","Dark",50,"IceBeam","Ice",50,"Protect",false);
@@ -384,13 +385,23 @@ int main(){
 	Unit poke8 ("Garchomp","Dragon",200,50,50,102,200,"DragonRush","Dragon",75,"BrickBreak","Fighting",50,"FireFang","Fire",50,"Protect",false);
 	Unit poke9 ("Abomasnow","Ice",300,30,30,60,300,"Blizzard","Ice",75,"WoodHammer","Grass",60,"IcePunch","Ice",50,"Protect",false);
 	Unit poke10 ("Absol","Dark",200,60,40,95,200,"NightSlash","Dark",75,"Curse","Ghost",50,"RockSmash","Fighting",50,"Protect",false);
+	Unit poke11 ("Charizard","Fire",200,50,50,100,200,"Daimonji","Fire",75,"DragonClaw","Dragon",50,"BrickBreak","Fighting",50,"Protect",false);
+	Unit poke12 ("Blastoise","Water",200,25,75,78,200,"HydroPump","Water",75,"DarkPaluse","Dark",50,"IceBeam","Ice",50,"Protect",false);
+	Unit poke13 ("Venusaur","Grass",200,25,75,80,200,"SolarBeam","Grass",75,"SeedBomb","Grass",65,"Doube-Edge","Normal",60,"Protect",false);
+	Unit poke14 ("Snorlax","Normal",400,10,30,30,400,"HyperBeam","Normal",90,"Crunch","Dark",50,"HammerArm","Fighting",50,"Protect",false);
+	Unit poke15 ("Lucario","Fighting",175,75,50,90,175,"CloseCombat","Fighting",75,"DragonPaluse","Dragon",50,"ExtreamSpeed","Normal",60,"Protect",false);
+	Unit poke16 ("Gengar","Ghost",200,75,25,110,200,"DestinyBond","Ghost",75,"SukerPunch","Dark",50,"FirePunch","Fire",50,"Protect",false);
+	Unit poke17 ("Gardevoir","Fairy",200,75,25,85,200,"Moonblast","Fairy",75,"MysticalFire","Fire",50,"GrassKnot","Grass",50,"Protect",false);
+	Unit poke18 ("Garchomp","Dragon",200,50,50,102,200,"DragonRush","Dragon",75,"BrickBreak","Fighting",50,"FireFang","Fire",50,"Protect",false);
+	Unit poke19 ("Abomasnow","Ice",300,30,30,60,300,"Blizzard","Ice",75,"WoodHammer","Grass",60,"IcePunch","Ice",50,"Protect",false);
+	Unit poke20 ("Absol","Dark",200,60,40,95,200,"NightSlash","Dark",75,"Curse","Ghost",50,"RockSmash","Fighting",50,"Protect",false);
 
     vector<Unit> player1_pokemon = {poke1, poke2, poke3};
     vector<Unit> allpoke = {poke1, poke2, poke3,poke4,poke5,poke6,poke7,poke8,poke9,poke10};
      string pokemonNames[] = {"Charizard","Blastoise","Venusaur","Snorlax","Lucario","Gengar","Gardevoir","Garchomp","Abomasnow","Absol",};
     ////////////////////////////////////////////////////
-    vector<Unit> selected_pokemon1; //Arrey โปเกมอน;
-    vector<Unit> selected_pokemon2; //Arrey โปเกมอน
+    vector<Unit> selected_pokemon1; //Array โปเกมอน;
+    vector<Unit> selected_pokemon2; //Array โปเกมอน
     showpk(allpoke);
     ////////////////////////////////////////////////////
         cout<<"---------------------------------------\n";//เลือกโปร
@@ -398,7 +409,7 @@ int main(){
         ChoosePokemon(selected_pokemon1,pokemonNames,poke1,poke2,poke3,poke4,poke5,poke6,poke7,poke8,poke9,poke10);
         cout<<"---------------------------------------\n";//เลือกโ
         cout<<"Player_2 Team Selection\n";
-        ChoosePokemon(selected_pokemon2,pokemonNames,poke1,poke2,poke3,poke4,poke5,poke6,poke7,poke8,poke9,poke10);
+        ChoosePokemon(selected_pokemon2,pokemonNames,poke11,poke12,poke13,poke14,poke15,poke16,poke17,poke18,poke19,poke20);
         cout<<"---------------------------------------\n";//เลือกโปรแกมอ
     int p1=0;
 	int p2=0;
@@ -411,6 +422,7 @@ int main(){
 		char player2_action;
 		int num1 = 10;
 		int num2 = 10;
+		int x;
 		cout<<"['F' Fight] ['S' Switch] ['H' Heal] What will Player1 do?  ";
 		cin>> player1_action;
 		player1_action = toupper(player1_action);
@@ -427,7 +439,6 @@ int main(){
             cout<<endl; 
             cout<<"What move will your Copymon use? ";
             cin>>num1;
-            //if(num == 1) selected_pokemon1[0].();
 		}
 	    else if(player1_action=='H') num1=5;
 	    else if(player1_action == 'S') num1=0;
@@ -468,14 +479,18 @@ int main(){
 	        selected_pokemon2[0].protect();
 	        cout<<selected_pokemon2[0].name<<" used Protect\n";
 	    }
-	    if(num1==0 or num1==5) swpoP(num1,selected_pokemon1);
-	    if(num2==0 or num2==5) swpoP(num2,selected_pokemon2);
+	    if(num1==0) swpoP(num1,selected_pokemon1);
+	    if(num2==0) swpoP(num2,selected_pokemon2);
 	    //***********************************************************
-	    
+	    if(selected_pokemon1[0].spe==selected_pokemon2[0].spe){
+	        x=rand()%2;
+	        if(x==0) selected_pokemon1[0].spe++;
+	        if(x==1) selected_pokemon2[0].spe++;
+	    }
 	    if(selected_pokemon1[0].spe>selected_pokemon2[0].spe){
     	    if(num1==1 or num1==2 or num1==3){
     	        selected_pokemon1[0].attack(selected_pokemon2[0],num1);
-                cout<<selected_pokemon1[0].name<<" used move"<<num1<<"\n";
+                cout<<"Player1's "<<selected_pokemon1[0].name<<" used move"<<num1<<"\n";
     	    }
     	    if(selected_pokemon2[0].hp == 0){
     	        p1++;
@@ -499,7 +514,7 @@ int main(){
         	    if(num2==1 or num2==2 or num2==3) {
         	        selected_pokemon2[0].attack(selected_pokemon1[0],num2);
         	        
-                    cout<<selected_pokemon2[0].name<<" used move"<<num2<<"\n";
+                    cout<<"Player2's "<<selected_pokemon2[0].name<<" used move"<<num2<<"\n";
         	        }
     	    }
     	    if(selected_pokemon1[0].hp == 0){
@@ -523,7 +538,7 @@ int main(){
     if(selected_pokemon2[0].spe>selected_pokemon1[0].spe){
     	    if(num2==1 or num2==2 or num2==3){
     	        selected_pokemon2[0].attack(selected_pokemon1[0],num2);
-                cout<<selected_pokemon2[0].name<<" used move"<<num1<<"\n";
+                cout<<"Player2's "<<selected_pokemon2[0].name<<" used move"<<num1<<"\n";
     	    }
     	    if(selected_pokemon1[0].hp == 0){
     	        p2++;
@@ -547,7 +562,7 @@ int main(){
         	    if(num1==1 or num1==2 or num1==3) {
         	        selected_pokemon1[0].attack(selected_pokemon2[0],num1);
         	        
-                    cout<<selected_pokemon1[0].name<<" used move"<<num1<<"\n";
+                    cout<<"Player1's "<<selected_pokemon1[0].name<<" used move"<<num1<<"\n";
         	        }
     	    }
     	    if(selected_pokemon2[0].hp == 0){
