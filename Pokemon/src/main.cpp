@@ -504,10 +504,6 @@ int main(int argc, char** argv) {
                     }
                     break;
                 case 9://Switch 1
-                    if (show) {
-                        cout << "Select Number to Switch : ";
-                        show = false;
-                    }
                     if (e.button.button == SDL_BUTTON_LEFT) {
 
                         if (Num1.isSelected) {
@@ -536,10 +532,6 @@ int main(int argc, char** argv) {
                     }
                     break;
                 case 10://Switch 2
-                    if (show) {
-                        cout << "Select Number to Switch : ";
-                        show = false;
-                    }
                     if (e.button.button == SDL_BUTTON_LEFT) {
                         if (Num1.isSelected) {
                             Mix_PlayChannel(-1, sound, 0);
@@ -730,6 +722,7 @@ int main(int argc, char** argv) {
                     cout << "Player2 please choose new Copymon to send out\n";
                     P1_Team(selected_pokemon2);
                     cout << "---------------------------------------\n";
+                    cout << "Select Number to Switch : \n";
                     break;                  
                 }
                 if (selected_pokemon2[0].hp != 0) {
@@ -749,6 +742,7 @@ int main(int argc, char** argv) {
                         cout << "Player1 please choose new Copymon to send out\n";
                         P1_Team(selected_pokemon1);
                         cout << "---------------------------------------\n";
+                        cout << "Select Number to Switch : \n";
                         break;
                     }
                     break;
@@ -773,27 +767,29 @@ int main(int argc, char** argv) {
                     cout << "Player1 please choose new Copymon to send out\n";
                     P1_Team(selected_pokemon1);
                     cout << "---------------------------------------\n";
+                    cout << "Select Number to Switch : \n";
                     break;
                 }
                 if (selected_pokemon1[0].hp != 0) {
                     if (num1 == 1 or num1 == 2 or num1 == 3) {
                         selected_pokemon1[0].attack(selected_pokemon2[0], num1);
-
                         cout << "Player1's " << selected_pokemon1[0].name << " used move" << num1 << "\n";
-                    }
-                }
-                if (selected_pokemon2[0].hp == 0) {
-                    p1++;
-                    if (p1 == 3) {
-                        cout << "P1 win";
+                    }            
+                    if (selected_pokemon2[0].hp == 0) {
+                        p1++;
+                        if (p1 == 3) {
+                            cout << "P1 win";
+                            break;
+                        }
+                        selected_pokemon2[0].showStatusforP2();
+                        selected_pokemon1[0].showStatusforP1();
+                        selected_pokemon2[0] = decoy;
+                        cout << "Player2 please choose new Copymon to send out\n";
+                        P1_Team(selected_pokemon2);
+                        cout << "---------------------------------------\n";
+                        cout << "Select Number to Switch : ";
                         break;
                     }
-                    selected_pokemon2[0].showStatusforP2();
-                    selected_pokemon1[0].showStatusforP1();
-                    selected_pokemon2[0] = decoy;
-                    cout << "Player2 please choose new Copymon to send out\n";
-                    P1_Team(selected_pokemon2);
-                    cout << "---------------------------------------\n";
                     break;
                 }
                 break;
@@ -802,9 +798,10 @@ int main(int argc, char** argv) {
             P2_Action = 0;
             show = true;
             cout << show;
-
+            cout << selected_pokemon1[0].hp;
+            cout << selected_pokemon2[0].hp;
             if (selected_pokemon1[0].hp == 0) {
-                state = 9;
+                state = 0;
             }
             if (selected_pokemon2[0].hp == 0) {
                 state = 10;
