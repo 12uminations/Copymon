@@ -37,7 +37,7 @@ class Unit{
 		void newTurn();
 		int attack(Unit &,int);
 		int beAttacked(int,string,int);
-		int heal();	
+		int heal(Unit);	
 		void protect();
 		bool isDead();
 };
@@ -232,11 +232,12 @@ vector<int> Unit::getSelect4(){
      x.push_back(move3atk);
      return x;
 }
-int Unit::heal(){
+int Unit::heal(Unit x){
     int h=60;
 	if(hp + h > hpmax) h = hpmax - hp;
 	hp = hp + h;
-	return hp;
+	cout<<x.name<<" healed "<<h<<" HP\n";
+	return h;
 }	
 void Unit::showStatusforP1(){
 		cout << "Player1--------------------------------\n"; 
@@ -463,14 +464,8 @@ int main(){
 	    else if(player2_action=='H') num2=5;
 	    else if(player2_action == 'S') num2 = 0;
 	    //***********************************************************
-	    if(num1 == 5) {
-	        selected_pokemon1[0].heal();
-	        cout<<selected_pokemon1[0].name<<" healed 60 HP\n";
-	    }
-	    if(num2 == 5){
-	        selected_pokemon2[0].heal();
-	        cout<<selected_pokemon2[0].name<<" healed 60 HP\n";
-	    } 
+	    if(num1 == 5) selected_pokemon1[0].heal(selected_pokemon1[0]);
+	    if(num2 == 5) selected_pokemon2[0].heal(selected_pokemon2[0]);
 	    if(num1 == 4){
 	        selected_pokemon1[0].protect();
 	        cout<<selected_pokemon1[0].name<<" used Protect\n";
