@@ -190,11 +190,12 @@ vector<int> Unit::getSelect4() {
     x.push_back(move3atk);
     return x;
 }
-int Unit::heal() {
+int Unit::heal(Unit x) {
     int h = 60;
     if (hp + h > hpmax) h = hpmax - hp;
     hp = hp + h;
-    return hp;
+    cout << x.name << " healed " << h << " HP\n";
+    return h;
 }
 void Unit::showStatusforP1() {
     cout << "Player1--------------------------------\n";
