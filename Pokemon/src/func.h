@@ -31,7 +31,7 @@ public:
     void newTurn();
     int attack(Unit&, int);
     int beAttacked(int, string, int);
-    int heal();
+    int heal(Unit);
     void protect();
     bool isDead();
 };
