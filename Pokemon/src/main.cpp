@@ -1,7 +1,8 @@
 #include "Button.h"
 #include "Func.h"
 
-
+int a = 0;
+int b = 0;
 
 int init = SDL_Init(SDL_INIT_EVERYTHING);
 int init2 = Mix_Init(0);
@@ -13,31 +14,31 @@ SDL_Renderer* ren = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 double delta = .0001;
 double time2 = SDL_GetTicks();
 
-void P1_Team(vector<Unit> &x){
-    cout<<"Your Current Pokemon : " <<"1." <<x[0].name <<endl;
-    cout<<"Your Other Pokemon : " ;
-    for(int i = 0 ; i < 3 ; i++){
-        if(x[i].name != x[0].name){
-            cout<<i+1<<"." <<x[i].name <<" ";
+void P1_Team(vector<Unit>& x) {
+    cout << "Your Current Pokemon : " << "1." << x[0].name << endl;
+    cout << "Your Other Pokemon : ";
+    for (int i = 0; i < 3; i++) {
+        if (x[i].name != x[0].name) {
+            cout << i + 1 << "." << x[i].name << " ";
         }
-   }
-   cout<<endl;
+    }
+    cout << endl;
 }
-void Switch(vector<Unit> &x,int u){  
+void Switch(vector<Unit>& x, int u) {
     if (x[u - 1].name == x[0].name) {
-        cout <<endl << "Please select switch number again: ";
+        cout << endl << "Please select switch number again \n";
     }
     else {
         Unit temp = x[0];
         x[0] = x[u - 1];
         x[u - 1] = temp;
-        cout << endl; 
+        cout << endl;
         P1_Team(x);
         cout << endl;
     }
 }
 
-void ChoosePokemon2(vector<Unit>& y, string x[], Unit a, Unit b, Unit c, Unit d, Unit e, Unit f, Unit g, Unit h, Unit i, Unit j,int u) {
+void ChoosePokemon2(vector<Unit>& y, string x[], Unit a, Unit b, Unit c, Unit d, Unit e, Unit f, Unit g, Unit h, Unit i, Unit j, int u) {
     bool alreadyChosen = false;
     for (int i = 0; i < y.size(); i++) {
         if (y[i].name == x[u - 1]) {
@@ -51,49 +52,50 @@ void ChoosePokemon2(vector<Unit>& y, string x[], Unit a, Unit b, Unit c, Unit d,
     }
     else {
         switch (u) {
-            case 1:
-                y.push_back(a);
-                cout << x[u-1] << endl;
-                break;
-            case 2:
-                y.push_back(b);
-                cout << x[u-1] << endl;
-                break;
-            case 3:
-                y.push_back(c);
-                cout << x[u-1] << endl;
-                break;
-            case 4:
-                y.push_back(d);
-                cout << x[u-1] << endl;
-                break;
-            case 5:
-                y.push_back(e);
-                cout << x[u-1] << endl;
-                break;
-            case 6:
-                y.push_back(f);
-                cout << x[u-1] << endl;
-                break;
-            case 7:
-                y.push_back(g);
-                cout << x[u-1] << endl;
-                break;
-            case 8:
-                y.push_back(h);
-                cout << x[u-1] << endl;
-                break;
-            case 9:
-                y.push_back(i);
-                cout << x[u-1] << endl;
-                break;
-            case 10:
-                y.push_back(j);
-                cout << x[u-1] << endl;
-                break;
+        case 1:
+            y.push_back(a);
+            cout << x[u - 1] << endl;
+            break;
+        case 2:
+            y.push_back(b);
+            cout << x[u - 1] << endl;
+            break;
+        case 3:
+            y.push_back(c);
+            cout << x[u - 1] << endl;
+            break;
+        case 4:
+            y.push_back(d);
+            cout << x[u - 1] << endl;
+            break;
+        case 5:
+            y.push_back(e);
+            cout << x[u - 1] << endl;
+            break;
+        case 6:
+            y.push_back(f);
+            cout << x[u - 1] << endl;
+            break;
+        case 7:
+            y.push_back(g);
+            cout << x[u - 1] << endl;
+            break;
+        case 8:
+            y.push_back(h);
+            cout << x[u - 1] << endl;
+            break;
+        case 9:
+            y.push_back(i);
+            cout << x[u - 1] << endl;
+            break;
+        case 10:
+            y.push_back(j);
+            cout << x[u - 1] << endl;
+            break;
         }
     }
 }
+
 void showpk(vector<Unit> x) {
     for (int i = 0; i < 10; i++) {
         cout << i + 1 << ".";
@@ -143,6 +145,10 @@ int main(int argc, char** argv) {
     vector<Unit> player1_pokemon = { poke1, poke2, poke3 };
     vector<Unit> allpoke = { poke1, poke2, poke3,poke4,poke5,poke6,poke7,poke8,poke9,poke10 };
     string pokemonNames[] = { "Charizard","Blastoise","Venusaur","Snorlax","Lucario","Gengar","Gardevoir","Garchomp","Abomasnow","Absol", };
+
+    vector<Unit>PicturePokemon1;
+    vector<Unit>PicturePokemon2;
+    int pokemonPic[] = { 1,2,3,4,5,6,7,8,9,10 };
 
     vector<Unit> selected_pokemon1; //Arrey โปเกมอน;
     vector<Unit> selected_pokemon2; //Arrey โปเกมอน
@@ -237,7 +243,124 @@ int main(int argc, char** argv) {
     Num10.drect.x = 600 - Num10.drect.w / 2;
     Num10.drect.y = 330;
 
+    pokeuse1 pokeuse1;
+    pokeuse1.srect.y = 0;
+    pokeuse1.drect.x = 600 - pokeuse1.drect.w / 2;
+    pokeuse1.drect.y = 330;
+    /////////////////////////////////////////////////////////////////////////////////////ใส่โปเกมอน///////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    charizard charizard;
+    charizard.srect.y = 0;
+    charizard.drect.x = 100 - charizard.drect.w / 2;
+    charizard.drect.y = 0;
 
+    garchomp garchomp;
+    garchomp.srect.y = 0;
+    garchomp.drect.x = 100 - garchomp.drect.w / 2;
+    garchomp.drect.y = 30;
+
+    absol absol;
+    absol.srect.y = 0;
+    absol.drect.x = 150 - absol.drect.w / 2;
+    absol.drect.y = 100;
+
+
+
+    gardevoir gardevoir;
+    gardevoir.srect.y = 0;
+    gardevoir.drect.x = 150 - gardevoir.drect.w / 2;
+    gardevoir.drect.y = 30;
+
+    gengar gengar;
+    gengar.srect.y = 0;
+    gengar.drect.x = 100 - gengar.drect.w / 2;
+    gengar.drect.y = 30;
+
+    lucario lucario;
+    lucario.srect.y = 0;
+    lucario.drect.x = 150 - lucario.drect.w / 2;
+    lucario.drect.y = 30;
+
+    snorlax snorlax;
+    snorlax.srect.y = 0;
+    snorlax.drect.x = 150 - snorlax.drect.w / 2;
+    snorlax.drect.y = 30;
+
+    venusaur venusaur;
+    venusaur.srect.y = 0;
+    venusaur.drect.x = 150 - venusaur.drect.w / 2;
+    venusaur.drect.y = 30;
+
+    blastoise  blastoise;
+    blastoise.srect.y = 0;
+    blastoise.drect.x = 150 - blastoise.drect.w / 2;
+    blastoise.drect.y = 30;
+
+    abomasnow  abomasnow;
+    abomasnow.srect.y = 0;
+    abomasnow.drect.x = 150 - abomasnow.drect.w / 2;
+    abomasnow.drect.y = 30;
+
+    rocketgang  rocketgang;
+    rocketgang.srect.y = 0;
+    rocketgang.drect.x = 600 - rocketgang.drect.w / 2;
+    rocketgang.drect.y = 150;
+
+    front_charizard front_charizard;
+    front_charizard.srect.y = 0;
+    front_charizard.drect.x = 500 - front_charizard.drect.w / 2;
+    front_charizard.drect.y = 50;
+
+    front_blastiose front_blastiose;
+    front_blastiose.srect.y = 0;
+    front_blastiose.drect.x = 500 - front_blastiose.drect.w / 2;
+    front_blastiose.drect.y = 100;
+
+    front_venusaur front_venusaur;
+    front_venusaur.srect.y = 0;
+    front_venusaur.drect.x = 500 - front_venusaur.drect.w / 2;
+    front_venusaur.drect.y = 100;
+
+    front_snorlax front_snorlax;
+    front_snorlax.srect.y = 0;
+    front_snorlax.drect.x = 500 - front_snorlax.drect.w / 2;
+    front_snorlax.drect.y = 100;
+
+
+    front_lucario front_lucario;
+    front_lucario.srect.y = 0;
+    front_lucario.drect.x = 500 - front_lucario.drect.w / 2;
+    front_lucario.drect.y = 100;
+
+
+    front_gengar front_gengar;
+    front_gengar.srect.y = 0;
+    front_gengar.drect.x = 500 - front_gengar.drect.w / 2;
+    front_gengar.drect.y = 100;
+
+
+    front_gardevoir front_gardevoir;
+    front_gardevoir.srect.y = 0;
+    front_gardevoir.drect.x = 500 - front_gardevoir.drect.w / 2;
+    front_gardevoir.drect.y = 100;
+
+
+    front_garchomp front_garchomp;
+    front_garchomp.srect.y = 0;
+    front_garchomp.drect.x = 500 - front_garchomp.drect.w / 2;
+    front_garchomp.drect.y = 100;
+
+
+    front_abomasnow front_abomasnow;
+    front_abomasnow.srect.y = 0;
+    front_abomasnow.drect.x = 500 - front_abomasnow.drect.w / 2;
+    front_abomasnow.drect.y = 100;
+
+
+    front_absol front_absol;
+    front_absol.srect.y = 0;
+    front_absol.drect.x = 500 - front_absol.drect.w / 2;
+    front_absol.drect.y = 100;
 
     int P2_Action = 0;
     int P1_Action = 0;
@@ -291,54 +414,65 @@ int main(int argc, char** argv) {
                     if (e.button.button == SDL_BUTTON_LEFT) {
                         if (Num1.isSelected) {
                             Mix_PlayChannel(-1, sound, 0);
+                            a += 1;
                             ChoosePokemon2(selected_pokemon1, pokemonNames, poke1, poke2, poke3, poke4, poke5, poke6, poke7, poke8, poke9, poke10, 1);
+
                             break;
                         }
                         if (Num2.isSelected) {
                             Mix_PlayChannel(-1, sound, 0);
+                            a += 2;
                             ChoosePokemon2(selected_pokemon1, pokemonNames, poke1, poke2, poke3, poke4, poke5, poke6, poke7, poke8, poke9, poke10, 2);
                             break;
                         }
                         if (Num3.isSelected) {
+                            a += 3;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon1, pokemonNames, poke1, poke2, poke3, poke4, poke5, poke6, poke7, poke8, poke9, poke10, 3);
                             break;
                         }
 
                         if (Num4.isSelected) {
+                            a += 4;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon1, pokemonNames, poke1, poke2, poke3, poke4, poke5, poke6, poke7, poke8, poke9, poke10, 4);
                             break;
                         }
                         if (Num5.isSelected) {
+                            a += 5;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon1, pokemonNames, poke1, poke2, poke3, poke4, poke5, poke6, poke7, poke8, poke9, poke10, 5);
                             break;
                         }
                         if (Num6.isSelected) {
+                            a += 6;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon1, pokemonNames, poke1, poke2, poke3, poke4, poke5, poke6, poke7, poke8, poke9, poke10, 6);
                             break;
                         }
                         if (Num7.isSelected) {
+                            a += 7;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon1, pokemonNames, poke1, poke2, poke3, poke4, poke5, poke6, poke7, poke8, poke9, poke10, 7);
                             break;
                         }
 
                         if (Num8.isSelected) {
+                            a += 8;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon1, pokemonNames, poke1, poke2, poke3, poke4, poke5, poke6, poke7, poke8, poke9, poke10, 8);
                             break;
                         }
                         if (Num9.isSelected) {
                             Mix_PlayChannel(-1, sound, 0);
+                            a += 9;
                             ChoosePokemon2(selected_pokemon1, pokemonNames, poke1, poke2, poke3, poke4, poke5, poke6, poke7, poke8, poke9, poke10, 9);
                             break;
                         }
 
                         if (Num10.isSelected) {
                             Mix_PlayChannel(-1, sound, 0);
+                            a += 10;
                             ChoosePokemon2(selected_pokemon1, pokemonNames, poke1, poke2, poke3, poke4, poke5, poke6, poke7, poke8, poke9, poke10, 10);
                             break;
                         }
@@ -348,53 +482,63 @@ int main(int argc, char** argv) {
                     if (e.button.button == SDL_BUTTON_LEFT) {
                         if (Num1.isSelected) {
                             Mix_PlayChannel(-1, sound, 0);
-                            ChoosePokemon2(selected_pokemon2, pokemonNames, poke11, poke12, poke13, poke14, poke15, poke16, poke17, poke18, poke19, poke20,1);
+                            b += 1;
+                            ChoosePokemon2(selected_pokemon2, pokemonNames, poke11, poke12, poke13, poke14, poke15, poke16, poke17, poke18, poke19, poke20, 1);
                             break;
                         }
                         if (Num2.isSelected) {
+                            b += 2;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon2, pokemonNames, poke11, poke12, poke13, poke14, poke15, poke16, poke17, poke18, poke19, poke20, 2);
                             break;
                         }
                         if (Num3.isSelected) {
+                            b += 3;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon2, pokemonNames, poke11, poke12, poke13, poke14, poke15, poke16, poke17, poke18, poke19, poke20, 3);
                             break;
                         }
 
                         if (Num4.isSelected) {
+                            b += 4;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon2, pokemonNames, poke11, poke12, poke13, poke14, poke15, poke16, poke17, poke18, poke19, poke20, 4);
                             break;
                         }
                         if (Num5.isSelected) {
+                            b += 5;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon2, pokemonNames, poke11, poke12, poke13, poke14, poke15, poke16, poke17, poke18, poke19, poke20, 5);
                             break;
                         }
                         if (Num6.isSelected) {
+                            b += 6;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon2, pokemonNames, poke11, poke12, poke13, poke14, poke15, poke16, poke17, poke18, poke19, poke20, 6);
                             break;
                         }
                         if (Num7.isSelected) {
+                            b += 7;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon2, pokemonNames, poke11, poke12, poke13, poke14, poke15, poke16, poke17, poke18, poke19, poke20, 7);
                             break;
                         }
 
                         if (Num8.isSelected) {
+                            b += 8;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon2, pokemonNames, poke11, poke12, poke13, poke14, poke15, poke16, poke17, poke18, poke19, poke20, 8);
                             break;
                         }
                         if (Num9.isSelected) {
+                            b += 9;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon2, pokemonNames, poke11, poke12, poke13, poke14, poke15, poke16, poke17, poke18, poke19, poke20, 9);
                             break;
                         }
 
                         if (Num10.isSelected) {
+                            b = 10;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon2, pokemonNames, poke11, poke12, poke13, poke14, poke15, poke16, poke17, poke18, poke19, poke20, 10);
                             break;
@@ -424,7 +568,6 @@ int main(int argc, char** argv) {
                             cout << num1 << endl;
                             show = true;
                             state = 6;
-                            break;
                         }
                         if (Num2.isSelected) {
                             Mix_PlayChannel(-1, sound, 0);
@@ -432,7 +575,6 @@ int main(int argc, char** argv) {
                             cout << num1 << endl;
                             show = true;
                             state = 6;
-                            break;
                         }
                         if (Num3.isSelected) {
                             Mix_PlayChannel(-1, sound, 0);
@@ -440,7 +582,6 @@ int main(int argc, char** argv) {
                             cout << num1 << endl;
                             show = true;
                             state = 6;
-                            break;
                         }
                         if (Num4.isSelected) {
                             Mix_PlayChannel(-1, sound, 0);
@@ -448,9 +589,9 @@ int main(int argc, char** argv) {
                             cout << num1 << endl;
                             show = true;
                             state = 6;
-                            break;
                         }
                     }
+                    num1 = 10;
                     break;
                 case 6: //Select Action F ,H ,S P2
                     if (e.button.button == SDL_BUTTON_LEFT) {
@@ -480,7 +621,7 @@ int main(int argc, char** argv) {
                         if (Num2.isSelected) {
                             Mix_PlayChannel(-1, sound, 0);
                             num2 = 2;
-                            cout << num2  << endl;
+                            cout << num2 << endl;
                             show = true;
                             state = 8;
                             break;
@@ -505,12 +646,12 @@ int main(int argc, char** argv) {
                     break;
                 case 9://Switch 1
                     if (e.button.button == SDL_BUTTON_LEFT) {
-
                         if (Num1.isSelected) {
                             Mix_PlayChannel(-1, sound, 0);
                             int Swich_number = 1;
                             cout << Swich_number;
                             Switch(selected_pokemon1, Swich_number);
+                            state = 8;
                             break;
                         }
                         if (Num2.isSelected) {
@@ -518,7 +659,7 @@ int main(int argc, char** argv) {
                             int Swich_number = 2;
                             cout << Swich_number;
                             Switch(selected_pokemon1, Swich_number);
-                            state = 11;
+                            state = 8;
                             break;
                         }
                         if (Num3.isSelected) {
@@ -526,9 +667,9 @@ int main(int argc, char** argv) {
                             int Swich_number = 3;
                             cout << Swich_number;
                             Switch(selected_pokemon1, Swich_number);
+                            state = 8;
                             break;
                         }
-                        show = true;
                     }
                     break;
                 case 10://Switch 2
@@ -538,6 +679,7 @@ int main(int argc, char** argv) {
                             int Swich_number = 1;
                             cout << Swich_number;
                             Switch(selected_pokemon2, Swich_number);
+                            state = 8;
                             break;
                         }
                         if (Num2.isSelected) {
@@ -545,6 +687,7 @@ int main(int argc, char** argv) {
                             int Swich_number = 2;
                             cout << Swich_number;
                             Switch(selected_pokemon2, Swich_number);
+                            state = 8;
                             break;
                         }
                         if (Num3.isSelected) {
@@ -552,17 +695,15 @@ int main(int argc, char** argv) {
                             int Swich_number = 3;
                             cout << Swich_number;
                             Switch(selected_pokemon2, Swich_number);
+                            state = 8;
                             break;
                         }
-                        if (Num4.isSelected) {
-                            Mix_PlayChannel(-1, sound, 0);
-                            int Swich_number = 4;
-                            cout << Swich_number;
-                            Switch(selected_pokemon2, Swich_number);
-                            break;
-                        }
-                        show = true;
                     }
+                    P1_Action = 0;
+                    P2_Action = 0;
+                    num1 = 10;
+                    num2 = 10;
+                    show = true;
                     break;
                 }
                 break;
@@ -671,13 +812,11 @@ int main(int argc, char** argv) {
             break;
         case 8://F P2
             if (num1 == 5) {
-                selected_pokemon1[0].heal();
-                cout << selected_pokemon1[0].name << " healed 60 HP\n";
+                selected_pokemon1[0].heal(selected_pokemon1[0]);
                 state = 0;
             }
             if (num2 == 5) {
-                selected_pokemon2[0].heal();
-                cout << selected_pokemon2[0].name << " healed 60 HP\n";
+                selected_pokemon2[0].heal(selected_pokemon2[0]);
                 state = 0;
             }
             if (num1 == 4) {
@@ -690,19 +829,26 @@ int main(int argc, char** argv) {
                 cout << selected_pokemon2[0].name << " used Protect\n";
                 state = 0;
             }
+
             if (num1 == 0) {
-                P1_Team(selected_pokemon1);              
+                P1_Team(selected_pokemon1);
+                num1 += 20;
                 state = 9;
+                break;
             }
+
             if (num2 == 0) {
                 P1_Team(selected_pokemon2);
+                num2 += 20;
                 state = 10;
+                break;
             }
+
             //********************************************     
             if (selected_pokemon1[0].spe == selected_pokemon2[0].spe) {
                 int x = rand() % 2;
                 if (x == 0) selected_pokemon1[0].spe++;
-                if (x == 1) selected_pokemon2[0].spe++;              
+                if (x == 1) selected_pokemon2[0].spe++;
             }
             while (selected_pokemon1[0].spe > selected_pokemon2[0].spe) {
                 if (num1 == 1 or num1 == 2 or num1 == 3) {
@@ -723,7 +869,7 @@ int main(int argc, char** argv) {
                     P1_Team(selected_pokemon2);
                     cout << "---------------------------------------\n";
                     cout << "Select Number to Switch : \n";
-                    break;                  
+                    break;
                 }
                 if (selected_pokemon2[0].hp != 0) {
                     if (num2 == 1 or num2 == 2 or num2 == 3) {
@@ -746,7 +892,7 @@ int main(int argc, char** argv) {
                         break;
                     }
                     break;
-                }   
+                }
                 break;
             }
 
@@ -760,6 +906,7 @@ int main(int argc, char** argv) {
                     if (p2 == 3) {
                         cout << "P2 win";
                         break;
+
                     }
                     selected_pokemon2[0].showStatusforP2();
                     selected_pokemon1[0].showStatusforP1();
@@ -770,11 +917,12 @@ int main(int argc, char** argv) {
                     cout << "Select Number to Switch : \n";
                     break;
                 }
+
                 if (selected_pokemon1[0].hp != 0) {
                     if (num1 == 1 or num1 == 2 or num1 == 3) {
                         selected_pokemon1[0].attack(selected_pokemon2[0], num1);
                         cout << "Player1's " << selected_pokemon1[0].name << " used move" << num1 << "\n";
-                    }            
+                    }
                     if (selected_pokemon2[0].hp == 0) {
                         p1++;
                         if (p1 == 3) {
@@ -796,20 +944,21 @@ int main(int argc, char** argv) {
             }
             P1_Action = 0;
             P2_Action = 0;
+            num1 = 10;
+            num2 = 10;
             show = true;
-            cout << show;
-            cout << selected_pokemon1[0].hp;
-            cout << selected_pokemon2[0].hp;
+
             if (selected_pokemon1[0].hp == 0) {
-                state = 0;
+                state = 9;
             }
             if (selected_pokemon2[0].hp == 0) {
                 state = 10;
             }
-            else {
+
+            if (selected_pokemon1[0].hp != 0 && selected_pokemon2[0].hp != 0) {
                 state = 3;
-            }             
-            break;         
+            }
+            break;
         }
 
 
@@ -818,6 +967,50 @@ int main(int argc, char** argv) {
         FightButton.draws();
         HealButton.draws2();
         SwichButton.draws3();
+        rocketgang.draws();
+
+        if (b == 1)
+        {
+            front_charizard.draws();
+        }
+        if (b == 2)
+        {
+            front_blastiose.draws();
+        }
+        if (b == 3)
+        {
+            front_venusaur.draws();
+        }
+        if (b == 4)
+        {
+            front_snorlax.draws();
+        }
+
+        if (b == 5)
+        {
+            front_lucario.draws();
+        }
+
+        if (b == 6)
+        {
+            front_gengar.draws();
+        }
+        if (b == 7)
+        {
+            front_gardevoir.draws();
+        }
+        if (b == 8)
+        {
+            front_garchomp.draws();
+        }
+        if (b == 9)
+        {
+            front_abomasnow.draws();
+        }
+        if (b == 10)
+        {
+            front_absol.draws();
+        }
         Num1.draws();
         Num2.draws();
         Num3.draws();
@@ -828,7 +1021,56 @@ int main(int argc, char** argv) {
         Num8.draws();
         Num9.draws();
         Num10.draws();
+
+        if (a == 1) {
+
+            charizard.draws();
+        }
+
+        if (a == 2) {
+
+            blastoise.draws();
+        }
+
+
+        if (a == 3) {
+
+            venusaur.draws();
+        }
+
+        if (a == 4) {
+
+            snorlax.draws();
+        }
+
+        if (a == 5) {
+
+            lucario.draws();
+        }
+
+        if (a == 6) {
+
+            gengar.draws();
+        }
+        if (a == 7) {
+
+            gardevoir.draws();
+        }
+        if (a == 8) {
+
+            garchomp.draws();
+        }
+        if (a == 9) {
+
+            abomasnow.draws();
+        }
+
+        if (a == 10) {
+
+            absol.draws();
+        }
         mouse.draw();
+      
         /////////////////////
         SDL_RenderPresent(ren);
 
