@@ -3,7 +3,7 @@
 
 int a = 0;
 int b = 0;
-
+int state_switch = 0;
 int init = SDL_Init(SDL_INIT_EVERYTHING);
 int init2 = Mix_Init(0);
 int SCREEN_WIDTH = 640;
@@ -25,17 +25,13 @@ void P1_Team(vector<Unit>& x) {
     cout << endl;
 }
 void Switch(vector<Unit>& x, int u) {
-    if (x[u - 1].name == x[0].name) {
-        cout << endl << "Please select switch number again \n";
-    }
-    else {
         Unit temp = x[0];
         x[0] = x[u - 1];
         x[u - 1] = temp;
         cout << endl;
         P1_Team(x);
         cout << endl;
-    }
+        state_switch = 1;
 }
 
 void ChoosePokemon2(vector<Unit>& y, string x[], Unit a, Unit b, Unit c, Unit d, Unit e, Unit f, Unit g, Unit h, Unit i, Unit j, int u) {
@@ -119,27 +115,27 @@ void showpk(vector<Unit> x) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 int main(int argc, char** argv) {
-    Unit decoy("None", "x", 0, 0, 0, 0, 0, "x", "x", 0, "x", "x", 0, "x", "x", 0, "x", false);
-    Unit poke1("Charizard", "Fire", 200, 50, 50, 100, 200, "Daimonji", "Fire", 75, "DragonClaw", "Dragon", 50, "BrickBreak", "Fighting", 50, "Protect", false);
-    Unit poke2("Blastoise", "Water", 200, 25, 75, 78, 200, "HydroPump", "Water", 75, "DarkPaluse", "Dark", 50, "IceBeam", "Ice", 50, "Protect", false);
-    Unit poke3("Venusaur", "Grass", 200, 25, 75, 80, 200, "SolarBeam", "Grass", 75, "SeedBomb", "Grass", 65, "Doube-Edge", "Normal", 60, "Protect", false);
-    Unit poke4("Snorlax", "Normal", 400, 10, 30, 30, 400, "HyperBeam", "Normal", 90, "Crunch", "Dark", 50, "HammerArm", "Fighting", 50, "Protect", false);
-    Unit poke5("Lucario", "Fighting", 175, 75, 50, 90, 175, "CloseCombat", "Fighting", 75, "DragonPaluse", "Dragon", 50, "ExtreamSpeed", "Normal", 60, "Protect", false);
-    Unit poke6("Gengar", "Ghost", 200, 75, 25, 110, 200, "DestinyBond", "Ghost", 75, "SukerPunch", "Dark", 50, "FirePunch", "Fire", 50, "Protect", false);
-    Unit poke7("Gardevoir", "Fairy", 200, 75, 25, 85, 200, "Moonblast", "Fairy", 75, "MysticalFire", "Fire", 50, "GrassKnot", "Grass", 50, "Protect", false);
-    Unit poke8("Garchomp", "Dragon", 200, 50, 50, 102, 200, "DragonRush", "Dragon", 75, "BrickBreak", "Fighting", 50, "FireFang", "Fire", 50, "Protect", false);
-    Unit poke9("Abomasnow", "Ice", 300, 30, 30, 60, 300, "Blizzard", "Ice", 75, "WoodHammer", "Grass", 60, "IcePunch", "Ice", 50, "Protect", false);
-    Unit poke10("Absol", "Dark", 200, 60, 40, 95, 200, "NightSlash", "Dark", 75, "Curse", "Ghost", 50, "RockSmash", "Fighting", 50, "Protect", false);
-    Unit poke11("Charizard", "Fire", 200, 50, 50, 100, 200, "Daimonji", "Fire", 75, "DragonClaw", "Dragon", 50, "BrickBreak", "Fighting", 50, "Protect", false);
-    Unit poke12("Blastoise", "Water", 200, 25, 75, 78, 200, "HydroPump", "Water", 75, "DarkPaluse", "Dark", 50, "IceBeam", "Ice", 50, "Protect", false);
-    Unit poke13("Venusaur", "Grass", 200, 25, 75, 80, 200, "SolarBeam", "Grass", 75, "SeedBomb", "Grass", 65, "Doube-Edge", "Normal", 60, "Protect", false);
-    Unit poke14("Snorlax", "Normal", 400, 10, 30, 30, 400, "HyperBeam", "Normal", 90, "Crunch", "Dark", 50, "HammerArm", "Fighting", 50, "Protect", false);
-    Unit poke15("Lucario", "Fighting", 175, 75, 50, 90, 175, "CloseCombat", "Fighting", 75, "DragonPaluse", "Dragon", 50, "ExtreamSpeed", "Normal", 60, "Protect", false);
-    Unit poke16("Gengar", "Ghost", 200, 75, 25, 110, 200, "DestinyBond", "Ghost", 75, "SukerPunch", "Dark", 50, "FirePunch", "Fire", 50, "Protect", false);
-    Unit poke17("Gardevoir", "Fairy", 200, 75, 25, 85, 200, "Moonblast", "Fairy", 75, "MysticalFire", "Fire", 50, "GrassKnot", "Grass", 50, "Protect", false);
-    Unit poke18("Garchomp", "Dragon", 200, 50, 50, 102, 200, "DragonRush", "Dragon", 75, "BrickBreak", "Fighting", 50, "FireFang", "Fire", 50, "Protect", false);
-    Unit poke19("Abomasnow", "Ice", 300, 30, 30, 60, 300, "Blizzard", "Ice", 75, "WoodHammer", "Grass", 60, "IcePunch", "Ice", 50, "Protect", false);
-    Unit poke20("Absol", "Dark", 200, 60, 40, 95, 200, "NightSlash", "Dark", 75, "Curse", "Ghost", 50, "RockSmash", "Fighting", 50, "Protect", false);
+    Unit decoy("None", "x", 0, 0, 0, 0, 0, "x", "x", 0, "x", "x", 0, "x", "x", 0, "x", false,0);
+    Unit poke1("Charizard", "Fire", 200, 50, 50, 100, 200, "Daimonji", "Fire", 75, "DragonClaw", "Dragon", 50, "BrickBreak", "Fighting", 50, "Protect", false,1);
+    Unit poke2("Blastoise", "Water", 200, 25, 75, 78, 200, "HydroPump", "Water", 75, "DarkPaluse", "Dark", 50, "IceBeam", "Ice", 50, "Protect", false,2);
+    Unit poke3("Venusaur", "Grass", 200, 25, 75, 80, 200, "SolarBeam", "Grass", 75, "SeedBomb", "Grass", 65, "Doube-Edge", "Normal", 60, "Protect", false,3);
+    Unit poke4("Snorlax", "Normal", 400, 10, 30, 30, 400, "HyperBeam", "Normal", 90, "Crunch", "Dark", 50, "HammerArm", "Fighting", 50, "Protect", false,4);
+    Unit poke5("Lucario", "Fighting", 175, 75, 50, 90, 175, "CloseCombat", "Fighting", 75, "DragonPaluse", "Dragon", 50, "ExtreamSpeed", "Normal", 60, "Protect", false,5);
+    Unit poke6("Gengar", "Ghost", 200, 75, 25, 110, 200, "DestinyBond", "Ghost", 75, "SukerPunch", "Dark", 50, "FirePunch", "Fire", 50, "Protect", false,6);
+    Unit poke7("Gardevoir", "Fairy", 200, 75, 25, 85, 200, "Moonblast", "Fairy", 75, "MysticalFire", "Fire", 50, "GrassKnot", "Grass", 50, "Protect", false,7);
+    Unit poke8("Garchomp", "Dragon", 200, 50, 50, 102, 200, "DragonRush", "Dragon", 75, "BrickBreak", "Fighting", 50, "FireFang", "Fire", 50, "Protect", false,8);
+    Unit poke9("Abomasnow", "Ice", 300, 30, 30, 60, 300, "Blizzard", "Ice", 75, "WoodHammer", "Grass", 60, "IcePunch", "Ice", 50, "Protect", false,9);
+    Unit poke10("Absol", "Dark", 200, 60, 40, 95, 200, "NightSlash", "Dark", 75, "Curse", "Ghost", 50, "RockSmash", "Fighting", 50, "Protect", false,10);
+    Unit poke11("Charizard", "Fire", 200, 50, 50, 100, 200, "Daimonji", "Fire", 75, "DragonClaw", "Dragon", 50, "BrickBreak", "Fighting", 50, "Protect", false,11);
+    Unit poke12("Blastoise", "Water", 200, 25, 75, 78, 200, "HydroPump", "Water", 75, "DarkPaluse", "Dark", 50, "IceBeam", "Ice", 50, "Protect", false,12);
+    Unit poke13("Venusaur", "Grass", 200, 25, 75, 80, 200, "SolarBeam", "Grass", 75, "SeedBomb", "Grass", 65, "Doube-Edge", "Normal", 60, "Protect", false,13);
+    Unit poke14("Snorlax", "Normal", 400, 10, 30, 30, 400, "HyperBeam", "Normal", 90, "Crunch", "Dark", 50, "HammerArm", "Fighting", 50, "Protect", false,14);
+    Unit poke15("Lucario", "Fighting", 175, 75, 50, 90, 175, "CloseCombat", "Fighting", 75, "DragonPaluse", "Dragon", 50, "ExtreamSpeed", "Normal", 60, "Protect", false,15);
+    Unit poke16("Gengar", "Ghost", 200, 75, 25, 110, 200, "DestinyBond", "Ghost", 75, "SukerPunch", "Dark", 50, "FirePunch", "Fire", 50, "Protect", false,16);
+    Unit poke17("Gardevoir", "Fairy", 200, 75, 25, 85, 200, "Moonblast", "Fairy", 75, "MysticalFire", "Fire", 50, "GrassKnot", "Grass", 50, "Protect", false,17);
+    Unit poke18("Garchomp", "Dragon", 200, 50, 50, 102, 200, "DragonRush", "Dragon", 75, "BrickBreak", "Fighting", 50, "FireFang", "Fire", 50, "Protect", false,18);
+    Unit poke19("Abomasnow", "Ice", 300, 30, 30, 60, 300, "Blizzard", "Ice", 75, "WoodHammer", "Grass", 60, "IcePunch", "Ice", 50, "Protect", false,19);
+    Unit poke20("Absol", "Dark", 200, 60, 40, 95, 200, "NightSlash", "Dark", 75, "Curse", "Ghost", 50, "RockSmash", "Fighting", 50, "Protect", false,20);
 
     int Index = 0;
     vector<Unit> player1_pokemon = { poke1, poke2, poke3 };
@@ -374,6 +370,7 @@ int main(int argc, char** argv) {
     int Switch_Number = 0;
     int Switch_Number2 = 0;
     bool switchP1 = false;
+    int n = 0;
 
 
     cout << "Player_1 Team Selection\n";
@@ -414,65 +411,65 @@ int main(int argc, char** argv) {
                     if (e.button.button == SDL_BUTTON_LEFT) {
                         if (Num1.isSelected) {
                             Mix_PlayChannel(-1, sound, 0);
-                            a += 1;
+                            a = 1;
                             ChoosePokemon2(selected_pokemon1, pokemonNames, poke1, poke2, poke3, poke4, poke5, poke6, poke7, poke8, poke9, poke10, 1);
-
                             break;
                         }
                         if (Num2.isSelected) {
                             Mix_PlayChannel(-1, sound, 0);
-                            a += 2;
+                            a = 2;
+                            
                             ChoosePokemon2(selected_pokemon1, pokemonNames, poke1, poke2, poke3, poke4, poke5, poke6, poke7, poke8, poke9, poke10, 2);
                             break;
                         }
                         if (Num3.isSelected) {
-                            a += 3;
+                            a = 3;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon1, pokemonNames, poke1, poke2, poke3, poke4, poke5, poke6, poke7, poke8, poke9, poke10, 3);
                             break;
                         }
 
                         if (Num4.isSelected) {
-                            a += 4;
+                            a = 4;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon1, pokemonNames, poke1, poke2, poke3, poke4, poke5, poke6, poke7, poke8, poke9, poke10, 4);
                             break;
                         }
                         if (Num5.isSelected) {
-                            a += 5;
+                            a = 5;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon1, pokemonNames, poke1, poke2, poke3, poke4, poke5, poke6, poke7, poke8, poke9, poke10, 5);
                             break;
                         }
                         if (Num6.isSelected) {
-                            a += 6;
+                            a = 6;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon1, pokemonNames, poke1, poke2, poke3, poke4, poke5, poke6, poke7, poke8, poke9, poke10, 6);
                             break;
                         }
                         if (Num7.isSelected) {
-                            a += 7;
+                            a = 7;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon1, pokemonNames, poke1, poke2, poke3, poke4, poke5, poke6, poke7, poke8, poke9, poke10, 7);
                             break;
                         }
 
                         if (Num8.isSelected) {
-                            a += 8;
+                            a = 8;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon1, pokemonNames, poke1, poke2, poke3, poke4, poke5, poke6, poke7, poke8, poke9, poke10, 8);
                             break;
                         }
                         if (Num9.isSelected) {
                             Mix_PlayChannel(-1, sound, 0);
-                            a += 9;
+                            a = 9;
                             ChoosePokemon2(selected_pokemon1, pokemonNames, poke1, poke2, poke3, poke4, poke5, poke6, poke7, poke8, poke9, poke10, 9);
                             break;
                         }
 
                         if (Num10.isSelected) {
                             Mix_PlayChannel(-1, sound, 0);
-                            a += 10;
+                            a = 10;
                             ChoosePokemon2(selected_pokemon1, pokemonNames, poke1, poke2, poke3, poke4, poke5, poke6, poke7, poke8, poke9, poke10, 10);
                             break;
                         }
@@ -482,56 +479,56 @@ int main(int argc, char** argv) {
                     if (e.button.button == SDL_BUTTON_LEFT) {
                         if (Num1.isSelected) {
                             Mix_PlayChannel(-1, sound, 0);
-                            b += 1;
+                            b = 1;
                             ChoosePokemon2(selected_pokemon2, pokemonNames, poke11, poke12, poke13, poke14, poke15, poke16, poke17, poke18, poke19, poke20, 1);
                             break;
                         }
                         if (Num2.isSelected) {
-                            b += 2;
+                            b = 2;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon2, pokemonNames, poke11, poke12, poke13, poke14, poke15, poke16, poke17, poke18, poke19, poke20, 2);
                             break;
                         }
                         if (Num3.isSelected) {
-                            b += 3;
+                            b = 3;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon2, pokemonNames, poke11, poke12, poke13, poke14, poke15, poke16, poke17, poke18, poke19, poke20, 3);
                             break;
                         }
 
                         if (Num4.isSelected) {
-                            b += 4;
+                            b = 4;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon2, pokemonNames, poke11, poke12, poke13, poke14, poke15, poke16, poke17, poke18, poke19, poke20, 4);
                             break;
                         }
                         if (Num5.isSelected) {
-                            b += 5;
+                            b = 5;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon2, pokemonNames, poke11, poke12, poke13, poke14, poke15, poke16, poke17, poke18, poke19, poke20, 5);
                             break;
                         }
                         if (Num6.isSelected) {
-                            b += 6;
+                            b = 6;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon2, pokemonNames, poke11, poke12, poke13, poke14, poke15, poke16, poke17, poke18, poke19, poke20, 6);
                             break;
                         }
                         if (Num7.isSelected) {
-                            b += 7;
+                            b = 7;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon2, pokemonNames, poke11, poke12, poke13, poke14, poke15, poke16, poke17, poke18, poke19, poke20, 7);
                             break;
                         }
 
                         if (Num8.isSelected) {
-                            b += 8;
+                            b = 8;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon2, pokemonNames, poke11, poke12, poke13, poke14, poke15, poke16, poke17, poke18, poke19, poke20, 8);
                             break;
                         }
                         if (Num9.isSelected) {
-                            b += 9;
+                            b = 9;
                             Mix_PlayChannel(-1, sound, 0);
                             ChoosePokemon2(selected_pokemon2, pokemonNames, poke11, poke12, poke13, poke14, poke15, poke16, poke17, poke18, poke19, poke20, 9);
                             break;
@@ -591,7 +588,7 @@ int main(int argc, char** argv) {
                             state = 6;
                         }
                     }
-                    num1 = 10;
+               
                     break;
                 case 6: //Select Action F ,H ,S P2
                     if (e.button.button == SDL_BUTTON_LEFT) {
@@ -646,20 +643,12 @@ int main(int argc, char** argv) {
                     break;
                 case 9://Switch 1
                     if (e.button.button == SDL_BUTTON_LEFT) {
-                        if (Num1.isSelected) {
-                            Mix_PlayChannel(-1, sound, 0);
-                            int Swich_number = 1;
-                            cout << Swich_number;
-                            Switch(selected_pokemon1, Swich_number);
-                            state = 8;
-                            break;
-                        }
                         if (Num2.isSelected) {
                             Mix_PlayChannel(-1, sound, 0);
                             int Swich_number = 2;
                             cout << Swich_number;
                             Switch(selected_pokemon1, Swich_number);
-                            state = 8;
+                            if (state_switch == 1) state = 8;
                             break;
                         }
                         if (Num3.isSelected) {
@@ -667,27 +656,23 @@ int main(int argc, char** argv) {
                             int Swich_number = 3;
                             cout << Swich_number;
                             Switch(selected_pokemon1, Swich_number);
-                            state = 8;
+                            if (state_switch == 1) state = 8;
                             break;
                         }
                     }
                     break;
                 case 10://Switch 2
-                    if (e.button.button == SDL_BUTTON_LEFT) {
-                        if (Num1.isSelected) {
-                            Mix_PlayChannel(-1, sound, 0);
-                            int Swich_number = 1;
-                            cout << Swich_number;
-                            Switch(selected_pokemon2, Swich_number);
-                            state = 8;
-                            break;
-                        }
+                    if (show) {
+                        "Select Number to Switch : \n";
+                        show = false;
+                    }
+                    if (e.button.button == SDL_BUTTON_LEFT) {                    
                         if (Num2.isSelected) {
                             Mix_PlayChannel(-1, sound, 0);
                             int Swich_number = 2;
                             cout << Swich_number;
                             Switch(selected_pokemon2, Swich_number);
-                            state = 8;
+                            if (state_switch == 1) state = 8;
                             break;
                         }
                         if (Num3.isSelected) {
@@ -695,16 +680,10 @@ int main(int argc, char** argv) {
                             int Swich_number = 3;
                             cout << Swich_number;
                             Switch(selected_pokemon2, Swich_number);
-                            state = 8;
+                            if (state_switch == 1) state = 8;
                             break;
                         }
                     }
-                    P1_Action = 0;
-                    P2_Action = 0;
-                    num1 = 10;
-                    num2 = 10;
-                    show = true;
-                    break;
                 }
                 break;
             }
@@ -810,6 +789,7 @@ int main(int argc, char** argv) {
                 break;
             }
             break;
+
         case 8://F P2
             if (num1 == 5) {
                 selected_pokemon1[0].heal(selected_pokemon1[0]);
@@ -832,18 +812,19 @@ int main(int argc, char** argv) {
 
             if (num1 == 0) {
                 P1_Team(selected_pokemon1);
-                num1 += 20;
+                cout << "Select Number to Switch : ";
+                num1 = 20;
                 state = 9;
                 break;
             }
 
             if (num2 == 0) {
                 P1_Team(selected_pokemon2);
-                num2 += 20;
+                cout<< "Select Number to Switch : ";
+                num2 = 20;
                 state = 10;
                 break;
-            }
-
+            }          
             //********************************************     
             if (selected_pokemon1[0].spe == selected_pokemon2[0].spe) {
                 int x = rand() % 2;
@@ -859,7 +840,12 @@ int main(int argc, char** argv) {
                 if (selected_pokemon2[0].hp == 0) {
                     p1++;
                     if (p1 == 3) {
-                        cout << "P1 WIN";
+                        cout << endl;
+                        cout << "---------------------------\n";
+                        cout << "|                         |\n";
+                        cout << "|        P1 WIN           |\n";
+                        cout << "|                         |\n";
+                        cout << "---------------------------\n";
                         break;
                     }
                     selected_pokemon2[0].showStatusforP2();
@@ -879,7 +865,12 @@ int main(int argc, char** argv) {
                     if (selected_pokemon1[0].hp == 0) {
                         p2++;
                         if (p2 == 3) {
-                            cout << "P2 win";
+                            cout << endl;
+                            cout << "---------------------------\n";
+                            cout << "|                         |\n";
+                            cout << "|        P2 WIN           |\n";
+                            cout << "|                         |\n";
+                            cout << "---------------------------\n";
                             break;
                         }
                         selected_pokemon2[0].showStatusforP2();
@@ -904,7 +895,12 @@ int main(int argc, char** argv) {
                 if (selected_pokemon1[0].hp == 0) {
                     p2++;
                     if (p2 == 3) {
-                        cout << "P2 win";
+                        cout << endl;
+                        cout << "---------------------------\n";
+                        cout << "|                         |\n";
+                        cout << "|        P2 WIN           |\n";
+                        cout << "|                         |\n";
+                        cout << "---------------------------\n";
                         break;
 
                     }
@@ -926,7 +922,12 @@ int main(int argc, char** argv) {
                     if (selected_pokemon2[0].hp == 0) {
                         p1++;
                         if (p1 == 3) {
-                            cout << "P1 win";
+                            cout << endl;
+                            cout << "---------------------------\n";
+                            cout << "|                         |\n";
+                            cout << "|        P1 WIN           |\n";
+                            cout << "|                         |\n";
+                            cout << "---------------------------\n";
                             break;
                         }
                         selected_pokemon2[0].showStatusforP2();
@@ -942,22 +943,23 @@ int main(int argc, char** argv) {
                 }
                 break;
             }
-            P1_Action = 0;
-            P2_Action = 0;
-            num1 = 10;
-            num2 = 10;
-            show = true;
 
             if (selected_pokemon1[0].hp == 0) {
                 state = 9;
             }
             if (selected_pokemon2[0].hp == 0) {
                 state = 10;
-            }
-
-            if (selected_pokemon1[0].hp != 0 && selected_pokemon2[0].hp != 0) {
-                state = 3;
-            }
+            }  
+                if (selected_pokemon1[0].hp != 0 && selected_pokemon2[0].hp != 0) {
+                    P1_Action = 0;
+                    P2_Action = 0;
+                    show = true;
+                    num1 = 10;
+                    num2 = 10;
+                    state = 3;
+                }
+            
+          
             break;
         }
 
@@ -1011,6 +1013,52 @@ int main(int argc, char** argv) {
         {
             front_absol.draws();
         }
+        if (selected_pokemon1.size() == 3 && selected_pokemon2.size() == 3) {
+            if (selected_pokemon2[0].num == 11)
+            {
+                front_charizard.draws();
+            }
+            if (selected_pokemon2[0].num == 12)
+            {
+                front_blastiose.draws();
+            }
+            if (selected_pokemon2[0].num == 13)
+            {
+                front_venusaur.draws();
+            }
+            if (selected_pokemon2[0].num == 14)
+            {
+                front_snorlax.draws();
+            }
+
+            if (selected_pokemon2[0].num == 15)
+            {
+                front_lucario.draws();
+            }
+
+            if (selected_pokemon2[0].num == 16)
+            {
+                front_gengar.draws();
+            }
+            if (selected_pokemon2[0].num == 17)
+            {
+                front_gardevoir.draws();
+            }
+            if (selected_pokemon2[0].num == 18)
+            {
+                front_garchomp.draws();
+            }
+            if (selected_pokemon2[0].num == 19)
+            {
+                front_abomasnow.draws();
+            }
+            if (selected_pokemon2[0].num == 20)
+            {
+                front_absol.draws();
+            }
+            b = 0;
+        }
+      
         Num1.draws();
         Num2.draws();
         Num3.draws();
@@ -1023,7 +1071,6 @@ int main(int argc, char** argv) {
         Num10.draws();
 
         if (a == 1) {
-
             charizard.draws();
         }
 
@@ -1031,8 +1078,6 @@ int main(int argc, char** argv) {
 
             blastoise.draws();
         }
-
-
         if (a == 3) {
 
             venusaur.draws();
@@ -1069,13 +1114,56 @@ int main(int argc, char** argv) {
 
             absol.draws();
         }
+
+        if (selected_pokemon1.size() == 3 && selected_pokemon2.size() == 3) {
+            if (selected_pokemon1[0].num == 1)
+            {
+                charizard.draws();
+            }
+            if (selected_pokemon1[0].num == 2)
+            {
+                blastoise.draws();
+            }
+            if (selected_pokemon1[0].num == 3)
+            {
+                venusaur.draws();
+            }
+            if (selected_pokemon1[0].num == 4)
+            {
+                snorlax.draws();
+            }
+
+            if (selected_pokemon1[0].num == 5)
+            {
+                lucario.draws();
+            }
+
+            if (selected_pokemon1[0].num == 6)
+            {
+                gengar.draws();
+            }
+            if (selected_pokemon1[0].num == 7)
+            {
+                gardevoir.draws();
+            }
+            if (selected_pokemon1[0].num == 8)
+            {
+                garchomp.draws();
+            }
+            if (selected_pokemon1[0].num == 9)
+            {
+                abomasnow.draws();
+            }
+            if (selected_pokemon1[0].num == 10)
+            {
+                absol.draws();
+            }
+            a = 0;
+        }
         mouse.draw();
-      
+
         /////////////////////
         SDL_RenderPresent(ren);
-
-
-
     }
 
     TTF_Quit();
