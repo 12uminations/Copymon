@@ -469,26 +469,12 @@ int main(){
 	    if(num1 == 5) selected_pokemon1[0].heal(selected_pokemon1[0]);
 	    if(num2 == 5) selected_pokemon2[0].heal(selected_pokemon2[0]);
 	    if(num1 == 4){
-	        if(np%2!=0) {
-	            cout<<selected_pokemon1[0].name<<" Protect failed\n";
-	            np++;
-	        }
-	        else if(np%2==0){
 	        selected_pokemon1[0].protect();
 	        cout<<selected_pokemon1[0].name<<" used Protect\n";
-	        np++;
-	        }
 	    }
 	    if(num2 == 4){
-	        if(np2%2!=0){
-	            cout<<selected_pokemon2[0].name<<" Protect failed\n";
-	            np2++;
-	        }
-	        else if(np2%2==0){
 	        selected_pokemon1[0].protect();
 	        cout<<selected_pokemon2[0].name<<" used Protect\n";
-	        np2++;
-	        }
 	    }
 	    if(num1==0) swpoP(num1,selected_pokemon1);
 	    if(num2==0) swpoP(num2,selected_pokemon2);
@@ -502,6 +488,7 @@ int main(){
     	    if(num1==1 or num1==2 or num1==3){
     	        selected_pokemon1[0].attack(selected_pokemon2[0],num1);
                 cout<<"Player1's "<<selected_pokemon1[0].name<<" used move"<<num1<<"\n";
+                if(x==0) selected_pokemon1[0].spe--;
     	    }
     	    if(selected_pokemon2[0].hp == 0){
     	        p1++;
@@ -545,11 +532,13 @@ int main(){
                 P1_Team(selected_pokemon1);
                 cout<<"---------------------------------------\n";
     	    }
+            
     	 } 
     if(selected_pokemon2[0].spe>selected_pokemon1[0].spe){
     	    if(num2==1 or num2==2 or num2==3){
     	        selected_pokemon2[0].attack(selected_pokemon1[0],num2);
                 cout<<"Player2's "<<selected_pokemon2[0].name<<" used move"<<num1<<"\n";
+                if(x==1) selected_pokemon2[0].spe--;
     	    }
     	    if(selected_pokemon1[0].hp == 0){
     	        p2++;
