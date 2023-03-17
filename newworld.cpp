@@ -414,6 +414,8 @@ int main(){
         cout<<"---------------------------------------\n";//เลือกโปรแกมอ
     int p1=0;
 	int p2=0;
+	int np=0;
+	int np2=0;
     while(true){
         selected_pokemon2[0].protect_on = false;
         selected_pokemon1[0].protect_on= false;
@@ -467,12 +469,26 @@ int main(){
 	    if(num1 == 5) selected_pokemon1[0].heal(selected_pokemon1[0]);
 	    if(num2 == 5) selected_pokemon2[0].heal(selected_pokemon2[0]);
 	    if(num1 == 4){
+	        if(np%2!=0) {
+	            cout<<selected_pokemon1[0].name<<" Protect failed\n";
+	            np++;
+	        }
+	        else if(np%2==0){
 	        selected_pokemon1[0].protect();
 	        cout<<selected_pokemon1[0].name<<" used Protect\n";
+	        np++;
+	        }
 	    }
 	    if(num2 == 4){
-	        selected_pokemon2[0].protect();
+	        if(np2%2!=0){
+	            cout<<selected_pokemon2[0].name<<" Protect failed\n";
+	            np2++;
+	        }
+	        else if(np2%2==0){
+	        selected_pokemon1[0].protect();
 	        cout<<selected_pokemon2[0].name<<" used Protect\n";
+	        np2++;
+	        }
 	    }
 	    if(num1==0) swpoP(num1,selected_pokemon1);
 	    if(num2==0) swpoP(num2,selected_pokemon2);
@@ -561,7 +577,7 @@ int main(){
         	        }
     	    }
     	    if(selected_pokemon2[0].hp == 0){
-    	        p1++;
+    	        
     	        if(p1==3){
     	           win(1);
     	           break;
